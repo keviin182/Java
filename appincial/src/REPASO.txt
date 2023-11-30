@@ -1,0 +1,68 @@
+IDE: Integrated Development Environment
+	Entorno Integrado de Desarrollo
+	"El programa que usamos para programar"
+	Eclipse en nuestro caso
+	
+	.java: Extensión del código clase de una fuente
+	.class: Extensión del bytecode código máquina
+	.jar: Conjunto de .classcomprimidos (zip)
+	
+	PascalCase: Nomenclatura para clases
+	CamelCase: Nomenclatura para métodos
+	
+	Método: o función
+	
+	PASOS PARA DEFINIR UNA FUNCIÓN O MÉTODO
+	1)Definimos un nombre
+	2)Entradas: Qué dato recibo / necesito para mi función.
+	3)Salidas: Qué devuelvo (veces nada)
+	
+	Clase: Concepto / Tipo
+	Objeto: Instancia de clase
+	
+	JDK:Java Development Kit
+	Paquete de software que incluye
+	Todolo necesario para programar y ejecutar en JAVA
+	
+	JSE: Java Standard Edition
+	
+	Herencia / Object
+	
+	Paquete: "Carpeta" que cotiene clases relacionadas
+	
+	INICIALIZAR: Todas las variables locales
+	de un método o función debes ser inicializadas
+	
+	int, float, número --> 0
+	char --> ' '
+	String / cualquier objeto -->null
+	boolean --> false
+	
+	this: Palabra reservda del lenguaje, que tiene 2 posibles
+	significados dependiendo de su ámbito (en qué función/método aparece)
+	
+   1) si this aparece en el constructor
+      representa el nuevo objeto / la nueva instancia
+      que se está creando
+      (p ej: el nuevo String, el nuevo DNI o la nueva Apuesta)
+      
+   2) En cualquier otro ámbito / otra función ó método
+      this representa el objeto llamante
+ 
+ 
+ SOBRECARGA / OVERLOAD: Ocurre cuando tengo un mismo método (mismo nombre)
+ con distintos parámetros.
+ 
+ ATRIBUTOS Y STATIC: Se dice que un atributo es estático si está
+ definido a nivel de Clase (no de objeto) Es decir, está compartido
+ por todos los objetos/instancias de la Clase.
+ 
+ Los otros atributos "dinámicos" son lo que son distintos para cada
+ objeto. Cada objeto tiene los suyos propios.
+ 	
+	Atributos y Static: Se dice que un atributo es estático si está definido 
+	a nivel de clase (no de objeto). Es decir, está compartido por
+	todos los objetos/instancias de la clase.
+	
+	Los otros atributos "dinámicos" son los que son distintos para cada
+	objeto. Cada objeto tiene lo suyos propios.
