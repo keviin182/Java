@@ -3,6 +3,8 @@ package apuestasbd;
 import apuestasbd.dao.UsuarioDao;
 
 public class MainApuestasBD {
+	
+	private static final int MAX_INTENTOS_LOGIN = 3;
 
 	public static void main(String[] args) {
 
@@ -51,33 +53,36 @@ public class MainApuestasBD {
 	}
 
 	public static void login() {
-	
+		int numeroIntentos = 0;
+		boolean encontrado = false;
+		do {
 
-	int numeroIntentos = 0;
-	boolean encontrado = false;
-	
-	do{
+			Usuario usuarioLogin = Pantalla.pedirCredenciales(); // DESDE LA CLASE PANTALLA LLAMA A PEDIR CREDENCIALES
+			UsuarioDao usuarioDAO = new UsuarioDao();
+			Usuario usuariodeBD = usuarioDAO.buscarExiste(usuarioLogin.getEmail(), usuarioLogin.getPassword());
+			numeroIntentos++;
+			if(numeroIntentos==MAX_INTENTOS_LOGIN-1) {
+				System.out.println("TE QUEDA 1 INTENTO");
+			}
+			if (usuariodeBD != null) {
+				System.out.println("BIENVENIDO");
 
-		Usuario usuarioLogin = Pantalla.pedirCredenciales(); // DESDE LA CLASE PANTALLA LLAMA A PEDIR CREDENCIALES
-		UsuarioDao usuarioDAO = new UsuarioDao();
-		Usuario usuariodeBD = usuarioDAO.buscarExiste(usuarioLogin.getEmail(), usuarioLogin.getPassword());
-		numeroIntentos++;
-		if (usuariodeBD != null) {
-			System.out.println("BIENVENIDO");
+				encontrado = true;
+			} else {
+				System.out.println(" USUARIO NO EXISTE VERIFICA DATOS");
+			}
+		} while ((!encontrado) && (numeroIntentos < MAX_INTENTOS_LOGIN));
 
-			encontrado = true;
+		if (encontrado) {
+			Pantalla.menuPantallaPrincipal();
 		} else {
-			System.out.println(" USUARIO NO EXISTE VERIFICA DATOS");
+			System.out.println("NÚMERO DE INTENTOS SUPERADO");
+			System.exit(0);// finalizo el programa
 		}
-	}while((!encontrado)&&(numeroIntentos<3));
 
-	if(encontrado)
-	{
-		Pantalla.menuPantallaPrincipal();
-	}else
-	{
-		System.out.println("NÚMERO DE INTENTOS SUPERADO");
-		System.exit(0);// finalizo el programa
-		}
+		// TODO MODIFICAD EL CÓDIGO PARA QUE AL USUARIO
+		//SE LE AVISE ANTES DEL TERCER INTENTO QUE
+		//SI FALLA SERÁ EXPULSADO
+
 	}
 }
