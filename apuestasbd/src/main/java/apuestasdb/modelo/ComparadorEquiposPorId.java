@@ -9,7 +9,7 @@ public class ComparadorEquiposPorId implements Comparator<Equipo> {
 	public int compare(Equipo o1, Equipo o2) {
 		int valor = 0;
 		
-		System.out.println("llamado a comaprador ");
+		System.out.println("llamado a comparador ");
 		System.out.println("EQUIPO 1 " + o1.toString() + " vs " + " EQUIPO 2" + o2);
 		//valor = o1.getIdequipo()-o2.getIdequipo();
 		valor = o2.getIdequipo()-o1.getIdequipo();

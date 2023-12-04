@@ -1,5 +1,8 @@
 package apuestasdb.modelo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,6 +28,11 @@ public class Equipo implements Comparable<Equipo>{
 	public Equipo(int idequipo, String nombre) {
 		super();
 		this.idequipo = idequipo;
+		this.nombre = nombre;
+	}
+	
+	public Equipo( String nombre) {
+		super();
 		this.nombre = nombre;
 	}
 	
@@ -79,4 +87,43 @@ public class Equipo implements Comparable<Equipo>{
 		
 		return resultado;
 	}
+	
+	//TODO HACED UN MÉTODO QUE CARGUE LA LISTA
+	//DE EQUIPOS DEL FICHERO "equipos.txt"
+	//Y LA CREE ORDENADA ALFABÉTICAMENTE (A-Z 
+	public static List<Equipo> cargarListaEquipos(String ruta) {
+	
+		List<Equipo> listaEquipos = null;
+		
+		try {
+			Path pathEquipos = Path.of(ruta);
+			List<String> lineas = Files.readAllLines(pathEquipos);
+			listaEquipos = new ArrayList<Equipo>();
+			for (String linea : lineas) {
+				//si linea tiene *, es una Región
+				
+				if (linea.startsWith("*")) // if (linea.charAt(0)=='*')
+				{
+					System.out.println("Es una Región");
+				}else 
+				{
+					Equipo equipo = new Equipo(linea);
+					listaEquipos.add(equipo);
+				}
+			}
+			//TODO ordenar
+			Collections.sort(listaEquipos);//Al no indicar un 2º parámetro, la lista se ordena por el orden "natural" -alfabéticamente por el nombre de los equipos"
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println("Error al cargar el fichero");
+		}
+			
+		return listaEquipos;
+
+	}
 }
+
+

@@ -52,6 +52,10 @@ public class MainApuestasBD {
 
 	}
 
+	// TODO MODIFICAD EL CÓDIGO PARA QUE AL USUARIO
+	//SE LE AVISE ANTES DEL TERCER INTENTO QUE
+	//SI FALLA SERÁ EXPULSADO
+	
 	public static void login() {
 		int numeroIntentos = 0;
 		boolean encontrado = false;
@@ -80,9 +84,21 @@ public class MainApuestasBD {
 			System.exit(0);// finalizo el programa
 		}
 
-		// TODO MODIFICAD EL CÓDIGO PARA QUE AL USUARIO
-		//SE LE AVISE ANTES DEL TERCER INTENTO QUE
-		//SI FALLA SERÁ EXPULSADO
 
+	}
+	
+	//TODO
+	//CARGAR EQUIPOS: Obtenemos la lista de equipos
+	//GENERAR PARTIDOS DE ESOS EQUIPOS
+	//PERSISTIR (GUARDAR EB BD) LOS EQUIPOS
+	//Y LOS PARTIDOS
+	
+	//nota: si ya hibuera equipos y partidos en la base
+	//de datos hay que eliminarlos antes
+	
+	public static void generarPartidos() {
+		
+		generarPartidos();
+		
 	}
 }
