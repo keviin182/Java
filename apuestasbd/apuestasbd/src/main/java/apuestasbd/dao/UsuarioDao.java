@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import apuestasbd.BaseDatos;
-import apuestasbd.Usuario;
+import apuestasbd.modelo.Usuario;
 
 /**
  * En esta clase, vamos a agurpar todas las operaciones de base datos relaciones
@@ -18,11 +18,11 @@ import apuestasbd.Usuario;
  */
 public class UsuarioDao {
 
-	public static final String INSTRUCCION_LEER_USUARIOS = "SELECT * FROM dbapuestas.usuarios;";
-	public static final String INSTRUCCION_LEER_USUARIOS_FILTRO = "SELECT * FROM dbapuestas.usuarios WHERE email=? AND password=?";
-	public static final String INSTRUCCION_INSERTAR_USUARIO = "INSERT INTO `dbapuestas`.`usuarios` (`nombre`, `email`, `password`) VALUES (?,?,?);";
-	public static final String INSTRUCCION_BORRAR_USUARIO = "DELETE FROM dbapuestas.usuarios WHERE email = ?;";
-	public static final String INSTRUCCION_MODIFICAR_PASSWORD_USUARIO = "UPDATE dbapuestas.usuarios SET password=? WHERE email=?;";
+	public static final String INSTRUCCION_LEER_USUARIOS = "SELECT * FROM bdapuestas.usuarios;";
+	public static final String INSTRUCCION_LEER_USUARIOS_FILTRO = "SELECT * FROM bdapuestas.usuarios WHERE email=? AND password=?";
+	public static final String INSTRUCCION_INSERTAR_USUARIO = "INSERT INTO `bdapuestas`.`usuarios` (`nombre`, `email`, `password`) VALUES (?,?,?);";
+	public static final String INSTRUCCION_BORRAR_USUARIO = "DELETE FROM bdapuestas.usuarios WHERE email = ?;";
+	public static final String INSTRUCCION_MODIFICAR_PASSWORD_USUARIO = "UPDATE bdapuestas.usuarios SET password=? WHERE email=?;";
 
 	/**
 	 * Méotod que reeucpera de la base de datos el listado de usuarios registrados
@@ -117,7 +117,7 @@ public class UsuarioDao {
 		// declaras la conexión dentro y se cuerra sola
 
 		try (Connection conexion = BaseDatos.obtenerConexion()) {
-
+			conexion.setAutoCommit(false);
 			System.out.println("Conexión realizada");
 			PreparedStatement instruccion = conexion.prepareStatement(INSTRUCCION_INSERTAR_USUARIO);
 			instruccion.setString(1, usuario.getNombre());
@@ -125,9 +125,11 @@ public class UsuarioDao {
 			instruccion.setString(3, usuario.getPassword());
 			int nfilasnuevas = instruccion.executeUpdate();
 			insertado = (nfilasnuevas == 1);
+			conexion.commit();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			//conexion.rollback();
 			// throw e;//propago la excepción
 
 		}
